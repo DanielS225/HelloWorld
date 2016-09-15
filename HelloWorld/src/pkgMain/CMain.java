@@ -1,38 +1,46 @@
 package pkgMain;
 
+import java.util.Scanner;
 
 public class CMain {
-
-	public static void main(String[] args) {
+	public static void main(String [] args) {
+		Scanner input = new Scanner(System.in);//new scanner for text input
 		
-		int t = 40;//years until retirement
+		System.out.println("Number of passing attempts");
+		double att = input.nextDouble();//years until retirement
 		
-		double P = 0;//Principle amount (original investment)
+		System.out.println("Number of completions");
+		double comp = input.nextDouble();//years until retirement
 		
-		double r = 7;//annual interest rate*/
+		System.out.println("Number of passing yards");
+		double yds = input.nextDouble();//years until retirement
 		
-		double t2 = 20;//how many years do you expect to live in retirement
+		System.out.println("Number of touchdowns");
+		double td = input.nextDouble();//years until retirement
 		
-		double SSI = 2642;//SSI monthly payments in retirement
+		System.out.println("Number of interceptions");
+		double intc = input.nextDouble();//years until retirement
 		
-		double needed = 10000;//expected income during retirement
+		double a = ((comp/att) - .3)*5;
+		double b = ((yds/att) - 3)*.25;
+		double c = (td/att)*20;
+		double d = 2.375 - ((intc/att)*25);
 		
-		double diff = needed - SSI;
+		if (a < 0) a = 0;
+		else if (a > 2.375) a = 2.375;
 		
-		double r2 = 2;//interest while retired
+		if (b < 0) b = 0;
+		else if (b > 2.375) b = 2.375;
 		
-		double M = 0;//money is zero, counting backwards
+		if (c < 0)	c = 0;
+		else if (c > 2.375) c = 2.375;
 		
-		for (int x = 1; x <= t2; x++) {//calculates money needed for retirement by reversing interest/withdrawal process
-			for (int y = 1; y <= 12;y++) {//based on given number of years and a monthly compounding of interest
-				M = M + diff;//adds withdrawals (difference between income and SSI)
-				M = M/(1+r2/1200);//subtracts the interest the account would make
-			}
-		}
-		System.out.println("You will need $" + M + " saved by retirement.");
+		if (d < 0) d = 0;
+		else if (d > 2.375)	d = 2.375;
 		
-		double money = M/(((Math.pow((1+r/1200),(12*t)))-1)/(r/1200));//monthly deposit needed each month before retirement
-		System.out.println("You will have to deposit $" + money + " per month before retirement.");
+		double passRate = ((a+b+c+d)/6)*100;
+		System.out.printf("The passer rating is " + "%3.1f",passRate);
+		
+		input.close();
 	}
-
 }
